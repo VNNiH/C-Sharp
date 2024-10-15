@@ -1,38 +1,50 @@
-// Online C# Editor for free
-// Write, Edit and Run your C# code using C# Online Compiler
-
 using System;
 
-public class HelloWorld
+namespace Course
 {
-    public static void Main(string[] args)
+    class DataTypes
     {
-        Employee emp = new Employee();
-        
-        emp.Name = Console.ReadLine();
-        emp.FullSalary = double.Parse(Console.ReadLine());
-        emp.Tax = double.Parse(Console.ReadLine());
-        
-        Console.WriteLine(emp.Name + " " + emp.salarioLiquido());
-        
-        Console.WriteLine("Digite a porcentagem para aumentar o salario : ");
-        double porcentagem = double.Parse(Console.ReadLine());
-        emp.aumentarSalario(porcentagem);
-        
-        Console.WriteLine(emp.Name + " " + emp.FullSalary);
-    }
-    
-    class Employee{
-        public string Name;
-        public double FullSalary;
-        public double Tax;
-        
-        public double salarioLiquido(){
-            return FullSalary - Tax;
+        static void Main(string[] args)
+        {
+            Funcionario funcionario = new Funcionario();
+
+            funcionario.Nome = Console.ReadLine();
+            funcionario.SalarioBruto = double.Parse(Console.ReadLine());
+            funcionario.Imposto = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Funcionario : " + funcionario.Nome + " , " + funcionario.SalarioLiquido());
+
+            Console.Write("Digite a porcentagem para aumentar o salario: ");
+            double porcentagem = double.Parse(Console.ReadLine());
+
+            funcionario.AumentarSalario(porcentagem);
+
+            Console.WriteLine("Funcionario : " + funcionario.Nome + " , " + funcionario.SalarioPosDesconto);
         }
-        
-        public void aumentarSalario(double porcentagem){
-            FullSalary *= (porcentagem/100);
+
+        class Funcionario
+        {
+            public string Nome;
+            public double SalarioBruto;
+            public double Imposto;
+            public double SalarioPosDesconto;
+            public double SalarioLiquido()
+            {
+                SalarioPosDesconto = SalarioBruto - Imposto;
+                return SalarioPosDesconto;
+            }
+
+            public void AumentarSalario(double porcentagem)
+            {
+                double tax = SalarioBruto * (porcentagem / 100);
+                SalarioPosDesconto = SalarioPosDesconto + tax;
+            }
+
+            public override string ToString()
+            {
+                return Nome + ", "+ SalarioPosDesconto;
+            }
+
         }
     }
 }
