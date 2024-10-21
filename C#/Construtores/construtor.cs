@@ -8,8 +8,10 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            Produto p = new Produto("TV", 500.00);
-            Console.WriteLine(p);
+            //podemos criar um produto com uma sintaxe alternativa
+            Produto p1 = new Produto { Nome = "TV", Preco = 300, Quantidade = 10 };
+            //funciona com () tambem
+            Produto p2 = new Produto () { Nome = "TV", Preco = 300, Quantidade = 10 };
         }
         class Produto
         {
